@@ -1,24 +1,36 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import CartItem from './CartItem'
+import Discount from './Discount'
+import {CartContext} from './App'
 
-const CartContext = React.createContext({})
+const Cart = () => {
+    
+    const {cart, dispatchCart} = useContext(CartContext)
+    const [events, setEvents] = useState([])
 
-const Cart = ({ stock }) => {
-    const initialState = {
-        items: {...stock},
-        discount: null,
-        events: []
-    }
+    useEffect(() => {
+        const event = {
+            cart,
+            timestamp: new Date().valueOf()
+        }
+        setEvents([...events, event])
+        console.log(events)
+    }, [cart])
 
     return (
-        <CartContext.Provider value={initialState}>
+        <>
             <h1>Cart</h1>
+            {/* { items.map((item) => <CartItem key={item.id} item={item} />) } */}
             {
-                Object.entries(initialState.items).map(([key, value]) => <CartItem key={key} item={value}/>)
+                Object.entries(cart).map(([id, item]) => (
+                    <CartItem key={id} item={item} />
+                ))
             }
-            {/* <Discount /> */}
-            {/* <Total /> */}
-        </CartContext.Provider>
+            <button onClick={() => dispatchCart({type: "EMPTY_CART"})}>Remove All Items</button>
+            <Discount />
+            
+            {/* <Checkout /> */}
+        </>
     )
 }
 

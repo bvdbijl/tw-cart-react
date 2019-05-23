@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from './App'
 
-const ProductItem = ({ item }) => {
 
+const ProductItem = ({ item: { id, displayName, price } }) => {
+    const {dispatchCart} = useContext(CartContext)
     const add_item = () => {
-
+        dispatchCart({ type: "ADD_ITEM", payload: {id, displayName, price }})
     }
     return (
         <div className="productItem">
-            <h1>ProductItem</h1>
-            <p>{item.display_name}</p>
-            <p>{item.price}</p>
-            <button onClick={add_item}>+</button>
+            <h3>{displayName}</h3>
+            <p>{price}</p>
+            <button onClick={add_item}>Add to Cart</button>
         </div>
     )
 }
