@@ -94,12 +94,15 @@ function App() {
   const [cart, dispatchCart] = useReducer(cartReducer, initialCart)
 
   return (
-    <div className="App">
+    <div className="App has-background-dark">
       <SKUContext.Provider value={{ products }}>
         <CartContext.Provider value={{ cart, dispatchCart }}>
-          <Cart />
-          <hr />
-          <Products />
+          <div className="section">
+            <div className="columns is-3">
+              <Cart />
+              <Products />
+            </div>
+          </div>
         </CartContext.Provider >
       </SKUContext.Provider >
     </div>

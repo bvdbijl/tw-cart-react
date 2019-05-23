@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bulma": "^0.7.5",
     "express": "^4.17.0",
     "path": "^0.12.7",
     "react": "^16.8.6",

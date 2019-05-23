@@ -18,14 +18,14 @@ const Total = ({ discount }) => {
 
     return (
         <div>
-            <h3 className="total">Total</h3>
+            
             {discount > 0 && (
                 <>
-                    <p>Original total: <span style={{textDecoration: "line-through"}}>{originalTotal}</span></p>
-                    <p>Discount: {totalDiscount}</p>
+                    <p>Original: <span>{originalTotal}</span></p>
+                    <p class="is-primary">Discount: -{totalDiscount}</p>
                 </>
             )}
-            <p>Your total: {discountedTotal}</p>
+            <h3 className="title is-4 is-outlined">Total: {discountedTotal}</h3>
         </div>
     )
 }

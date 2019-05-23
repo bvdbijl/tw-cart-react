@@ -17,13 +17,14 @@ const Discount = () => {
         }
     }
     return (
-        <div>
+        <>
+        <div className="level">
             <h3>Discount Code</h3>
-            <input type="text" value={discountCode} onChange={handleChange}/>
-            <em style={{paddingLeft: "10px"}}>Use code 'superdiscount' for a 10% discount.</em>
-            <p>{discount > 0 ? `${discount * 100} % Discount!`  : 'No Discount'}</p>
-            <Total discount={discount}/>
+            <input placeholder="superdiscount" type="text" value={discountCode} onChange={handleChange}/>
+            <p>Current discount: {discount > 0 ? `${discount * 100}% Discount!`  : 'No Discount'}</p>
         </div>
+        <Total discount={discount}/>
+        </>
     )
 }
 

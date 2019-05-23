@@ -18,19 +18,36 @@ const Cart = () => {
     }, [cart])
 
     return (
-        <>
-            <h1>Cart</h1>
-            {/* { items.map((item) => <CartItem key={item.id} item={item} />) } */}
-            {
-                Object.entries(cart).map(([id, item]) => (
-                    <CartItem key={id} item={item} />
-                ))
-            }
-            <button onClick={() => dispatchCart({type: "EMPTY_CART"})}>Remove All Items</button>
+        <div className="column">
+        <div className="box">
+            <div className="cart-header">
+                <h1 className="title">Cart</h1>
+                <button className="button" onClick={() => dispatchCart({type: "EMPTY_CART"})}>Remove All Items</button>
+            </div>
+            <table className="table is-fullwidth is-hoverable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    Object.entries(cart).map(([id, item]) => (
+                        <tr>
+                            <CartItem key={id} item={item} />
+                        </tr>
+                    ))
+                }
+            </tbody>
+            </table>
             <Discount />
             
             {/* <Checkout /> */}
-        </>
+        </div>
+        </div>
     )
 }
 

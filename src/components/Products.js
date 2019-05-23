@@ -5,14 +5,28 @@ import { SKUContext } from './App'
 const Products = () => {
     const { products } = useContext(SKUContext)
     return (
-        <div>
-            <h1>Products</h1>
-            {/* {items.map((item) => <ProductItem key={item.id} item={item}/>)} */}
-            {
-                Object.entries(products).map(([id, item]) => (
-                    <ProductItem key={id} item={item} />
-                ))
-            }
+        <div className="column">
+            <div className="box">
+            <h1 className="title">Products</h1>
+            <table className="table is-fullwidth is-hoverable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    Object.entries(products).map(([id, item]) => (
+                        <tr>
+                            <ProductItem key={id} item={item} />
+                        </tr>
+                    ))
+                }
+            </tbody>
+            </table>
+            </div>
         </div>
     )
 }

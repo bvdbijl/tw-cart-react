@@ -3,16 +3,22 @@ import { CartContext } from './App'
 
 
 const ProductItem = ({ item: { id, displayName, price } }) => {
-    const {dispatchCart} = useContext(CartContext)
+    const { dispatchCart } = useContext(CartContext)
     const add_item = () => {
-        dispatchCart({ type: "ADD_ITEM", payload: {id, displayName, price }})
+        dispatchCart({ type: "ADD_ITEM", payload: { id, displayName, price } })
     }
     return (
-        <div className="productItem">
-            <h3>{displayName}</h3>
-            <p>{price}</p>
-            <button onClick={add_item}>Add to Cart</button>
-        </div>
+        <>
+            <td>
+                <h3 className="title is-5">{displayName}</h3>
+            </td>
+            <td>
+                <p class="content">{price}</p>
+            </td>
+            <td style={{ textAlign: "right" }}>
+                <button class="button is-primary" onClick={add_item}>Add to Cart</button>
+            </td>
+        </>
     )
 }
 
