@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.7.5",
-    "bulma-styled-components": "^1.0.2",
     "express": "^4.17.0",
     "path": "^0.12.7",
     "react": "^16.8.6",
+    "react-bulma-components": "^3.0.1-6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
     "styled-components": "^4.2.0"

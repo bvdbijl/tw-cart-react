@@ -34,7 +34,7 @@ const CartItem = ({ item: { id, displayName, price, amount } }) => {
             </td>
             <td>
 
-            <button className="button is-danger" onClick={() => dispatchCart({ type: "REMOVE_ITEM", payload: { id } })}>Remove</button>
+            <button className="button delete is-danger" onClick={() => dispatchCart({ type: "REMOVE_ITEM", payload: { id } })}>Remove</button>
             </td>
         </>
     )

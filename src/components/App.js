@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
-
+import 'react-bulma-components/dist/react-bulma-components.min.css'
 import Cart from './Cart'
 import Products from './Products'
-import { AppWrapper, Section, Columns } from './Bulma'
+import { AppWrapper } from './Bulma'
+import { Section, Columns } from 'react-bulma-components'
 
 import Context from '../context/context'
-
 import { cartReducer, initialCart } from '../reducers/cart'
 import { productsReducer, initialProducts } from '../reducers/products'
 
@@ -26,8 +26,8 @@ function App() {
       <Section>
         <Context.Provider value={context}>
           <Columns>
-            <Cart />
-            <Products />
+            <Cart /> {/* Cart component with products */}
+            <Products /> {/* Products component with products */}
           </Columns>
         </Context.Provider>
       </Section>
