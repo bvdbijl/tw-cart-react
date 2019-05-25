@@ -1,11 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react'
+import styled from 'styled-components'
 import CartItem from './CartItem'
 import Discount from './Discount'
-import {CartContext} from './App'
+import Context from '../context/context'
+
+const CartHeader = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+
 
 const Cart = () => {
     
-    const {cart, dispatchCart} = useContext(CartContext)
+    const {cart, dispatchCart} = useContext(Context)
     const [events, setEvents] = useState([])
 
     useEffect(() => {
@@ -14,16 +23,19 @@ const Cart = () => {
             timestamp: new Date().valueOf()
         }
         setEvents([...events, event])
-        console.log(events)
+        console.log(`Events:`, events)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart])
+
+    const removeAllCartItems = () => dispatchCart({type: "EMPTY_CART"})
 
     return (
         <div className="column">
         <div className="box">
-            <div className="cart-header">
+            <CartHeader>
                 <h1 className="title">Cart</h1>
-                <button className="button" onClick={() => dispatchCart({type: "EMPTY_CART"})}>Remove All Items</button>
-            </div>
+                <button className="button" onClick={removeAllCartItems}>Remove All Items</button>
+            </CartHeader>
             <table className="table is-fullwidth is-hoverable">
             <thead>
                 <tr>
@@ -36,8 +48,8 @@ const Cart = () => {
             <tbody>
                 {
                     Object.entries(cart).map(([id, item]) => (
-                        <tr>
-                            <CartItem key={id} item={item} />
+                        <tr key={id + "_cart"}>
+                            <CartItem item={item} />
                         </tr>
                     ))
                 }

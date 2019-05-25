@@ -1,24 +1,22 @@
 import React, { useContext } from 'react'
-import { CartContext } from './App'
+import Context from '../context/context'
 
 const Total = ({ discount }) => {
-    const { cart } = useContext(CartContext)
+    const { cart } = useContext(Context)
 
-    const calculateTotal = () => {
-        return Object.entries(cart).reduce((acc, [, curr]) => {
-            let currentTotal = curr.price * curr.amount
-            let currentDiscount = currentTotal * discount
-            acc.originalTotal += currentTotal
-            acc.totalDiscount += currentDiscount
-            acc.discountedTotal += (currentTotal - currentDiscount)
-            return acc
-        }, {originalTotal: 0, totalDiscount: 0, discountedTotal: 0})
-    }
-    const { originalTotal, totalDiscount, discountedTotal } = calculateTotal()
+    const { originalTotal, totalDiscount, discountedTotal } = Object.entries(cart).reduce((acc, [, curr]) => {
+        let { originalTotal, totalDiscount, discountedTotal } = acc
+        const currentTotal = curr.price * curr.amount
+        const currentDiscount = currentTotal * discount
+        originalTotal += currentTotal
+        totalDiscount += currentDiscount
+        discountedTotal += (currentTotal - currentDiscount)
+        return { originalTotal, totalDiscount, discountedTotal }
+    }, { originalTotal: 0, totalDiscount: 0, discountedTotal: 0 })
 
     return (
         <div>
-            
+
             {discount > 0 && (
                 <>
                     <p>Original: <span>{originalTotal}</span></p>

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { CartContext } from './App'
+import Context  from '../context/context'
 
 const CartItem = ({ item: { id, displayName, price, amount } }) => {
-    const { dispatchCart } = useContext(CartContext)
+    const { dispatchCart } = useContext(Context)
 
     return (
         <>

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import ProductItem from './ProductItem'
-import { SKUContext } from './App'
+import Context from '../context/context'
 
 const Products = () => {
-    const { products } = useContext(SKUContext)
+    const { products } = useContext(Context)
     return (
         <div className="column">
             <div className="box">
@@ -19,8 +19,8 @@ const Products = () => {
             <tbody>
                 {
                     Object.entries(products).map(([id, item]) => (
-                        <tr>
-                            <ProductItem key={id} item={item} />
+                        <tr key={id + "_product"} >
+                            <ProductItem item={item} />
                         </tr>
                     ))
                 }
